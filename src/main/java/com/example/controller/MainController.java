@@ -24,7 +24,7 @@ public class MainController {
     public ResponseEntity<Response> saveForm(@RequestBody User user){
         try {
             User user1 = this.userService.saveForm(user);
-            return ResponseEntity.status(HttpStatus.OK).body(new Response("Successfully Registered.", user1));
+            return ResponseEntity.status(HttpStatus.OK).body(new Response("You joined our yoga classes for this month.", user1));
         }catch (CustomException ex){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Response(ex.getMessage(), null));
         } catch(Exception e) {

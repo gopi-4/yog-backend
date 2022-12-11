@@ -25,7 +25,7 @@ public class userService {
             int month1 = cal.get(Calendar.MONTH);
             cal.setTime(new java.sql.Date(System.currentTimeMillis()));
             int month2 = cal.get(Calendar.MONTH);
-            if(month1==month2) throw new CustomException("User already registered");
+            if(month1==month2) throw new CustomException("User already registered.");
             else this.userRepository.delete(user1);
         }
         user.setPayment_status(CompletePayment(user.getEmail()));
