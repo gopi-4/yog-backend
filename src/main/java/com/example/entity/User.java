@@ -13,9 +13,8 @@ public class User {
     private int Id;
     @Column(nullable = false)
     private String name;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
-    @Column(nullable = true)
     private String phone;
     @Column(nullable = false)
     private Date dob;

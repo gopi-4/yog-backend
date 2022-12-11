@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController()
+@RestController("/api")
 public class MainController {
 
     @Autowired
     private userService userService;
 
-    @PostMapping("/add")
+    @PostMapping("/registerUser")
     public ResponseEntity<String> saveForm(@RequestBody User user){
         try {
             this.userService.saveForm(user);
@@ -32,7 +32,7 @@ public class MainController {
         }
     }
 
-    @GetMapping("/getAll")
+    @GetMapping("/getUsers")
     public ResponseEntity<List<User>> getAll(){
         try {
             List<User> list = this.userService.getAll();

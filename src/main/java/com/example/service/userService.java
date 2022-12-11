@@ -29,16 +29,15 @@ public class userService {
             if(month1==month2) throw new CustomException("User already registered");
             else this.userRepository.delete(user1);
         }
-        user.setPayment_status(CompletePayment());
+        user.setPayment_status(CompletePayment(user.getEmail()));
         System.out.println(user.getPayment_status());
         if(!user.getPayment_status()) throw new CustomException("Payment Fail!!!");
         user.setRegistration_date(new java.sql.Date(System.currentTimeMillis()));
         return this.userRepository.save(user);
     }
 
-    private boolean CompletePayment(){
-        Random random = new Random();
-        return random.nextBoolean();
+    private boolean CompletePayment(String email){
+        return !email.equals("test@gmail.com");
     }
 
     public List<User> getAll() throws CustomException {
