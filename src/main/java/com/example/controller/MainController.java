@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.entity.Response;
 import com.example.entity.User;
 import com.example.exception.CustomException;
 import com.example.service.userService;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -19,15 +21,15 @@ public class MainController {
 
     @PostMapping("/registerUser")
     @CrossOrigin(origins = "*")
-    public ResponseEntity<String> saveForm(@RequestBody User user){
+    public ResponseEntity<Response> saveForm(@RequestBody User user){
         try {
-            this.userService.saveForm(user);
-            return ResponseEntity.status(HttpStatus.OK).body("Registered Successfully...");
+            User user1 = this.userService.saveForm(user);
+            return ResponseEntity.status(HttpStatus.OK).body(new Response("Successfully Registered.", user1));
         }catch (CustomException ex){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Response(ex.getMessage(), null));
         } catch(Exception e) {
             System.out.println(e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Response(e.getMessage(), null));
         }
     }
 
