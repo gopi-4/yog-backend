@@ -18,6 +18,7 @@ public class MainController {
     private userService userService;
 
     @PostMapping("/registerUser")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<String> saveForm(@RequestBody User user){
         try {
             this.userService.saveForm(user);
@@ -31,6 +32,7 @@ public class MainController {
     }
 
     @GetMapping("/getUsers")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<List<User>> getAll(){
         try {
             List<User> list = this.userService.getAll();
