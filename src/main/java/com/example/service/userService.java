@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
 import java.util.List;
-import java.util.Random;
 
 @Service
 public class userService {
@@ -37,7 +36,7 @@ public class userService {
     }
 
     private boolean CompletePayment(String email){
-        return !email.equals("test@gmail.com");
+        return !email.equals("test_payment_fail@gmail.com");
     }
 
     public List<User> getAll() throws CustomException {
